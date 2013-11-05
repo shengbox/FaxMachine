@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="shape_edit_bg">#d7f1d8</color>
+    
+    <color name="webview_bg">#CC000000</color>
+    <color name="webview_bg_click">#80626262</color>
+    <color name="transparent">#7f000000</color>
+    <color name="bg_color">#00000000</color>
+    <color name="text_black">#4b4b4b</color>
+    <color name="text_dark_gray">#aaaaaa</color>
+    <color name="text_gray">#c3c3c3</color>
+    <color name="gray">#e8f2fb</color>
+    <color name="blue">#4594eb</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="detail_title_color">#556d8f</color>
+    <color name="red">#d15762</color>
+    <color name="green">#80c269</color>
+    <color name="first_page">#cfddeb</color>
+    <color name="card_blue">#577ba1</color>
+    <color name="card_green">#11881c</color>
+    <color name="mns_color">#aaaaaa</color>
+    <color name="invite_button_text_color">#ffffff</color>
+    
+    <color name="grid_click_bg">#6096cefe</color>
+    <color name="unfocused">#00000000</color>
+    <color name="clicked">#ffeff8fe</color>
+    <color name="pressed">#ffeff8fe</color>
+    <color name="selected">#ffeff8fe</color>
+    <color name="focused">#ffeff8fe</color>
+
+    <color name="edd">#2e2d2d</color>
+    <color name="gsm_color">#1755a9</color>
+    <color name="pressed2">#7f556d8f</color>
+    
+    <color name="edit_layout_bg">#e1e1e1</color>
+    
+    <color name="new_theme_color">#52aef3</color>
+    
+    <color name="new_red_btn_nurmal_bg">#f66952</color>
+    <color name="new_red_btn_press_bg">#cd583c</color>
+    <color name="new_btn_red_disable_bg">#9Af66952</color>
+    
+    <color name="new_green_btn_nurmal_bg">#34bf90</color>
+    <color name="new_green_btn_press_bg">#2ca57c</color>
+    
+    <color name="new_blue_btn_nurmal_bg">#52aef3</color>
+    <color name="new_blue_btn_press_bg">#2678b5</color>
+    <color name="new_blue_btn_disable_bg">#9A52aef3</color>
+    
+    <color name="new_layout_bg">#efefef</color>
+    
+    <color name="meeting_back_home_nurmal">#4ca2e3</color>
+    <color name="meeting_back_home_press">#4390ca</color>
+    
+    <color name="tab_indicator_nurmal">#297dbd</color>
+    <color name="tab_indicator_check">#52aef3</color>
+</resources>

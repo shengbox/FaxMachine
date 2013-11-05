@@ -1,0 +1,22 @@
+<resources>
+
+    <string name="app_name">传真机</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_rect_photo">传真机</string>
+    <string name="new_fax">new</string>
+    <string name="receiver_desc">收件人信息</string>
+    <string name="input_receiver_desc">请输入收件人姓名</string>
+    <string name="sent_time">发送时间</string>
+    <string name="sent_result">发送结果</string>
+    <string name="input_fax_number">请输入传真号码</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <string-array name="fax_list_type">
+        <item>收件箱</item>
+        <item>发件箱</item>
+        <item>草稿箱</item>
+    </string-array>
+
+</resources>

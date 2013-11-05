@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:style/Theme.Holo.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="MyTheme" parent="android:style/Theme.Holo.Light">
+        <item name="android:tabWidgetStyle">@style/LightTabWidget</item>
+    </style>
+    <style name="LightTabWidget" parent="@android:style/Widget.Holo.TabWidget">
+        <item name="android:tabStripLeft">@null</item>
+        <item name="android:tabStripRight">@null</item>
+        <item name="android:tabStripEnabled">false</item>
+        <item name="android:divider">@null</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:dividerPadding">8dip</item>
+        <item name="android:measureWithLargestChild">true</item>
+    </style>
+
+    <style name="Widget.Holo.Tab" parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minWidth">80dip</item>
+    </style>
+
+    <style name="Widget.Holo.TabText" parent="@android:style/Widget.Holo.ActionBar.TabText">
+        <item name="android:maxWidth">180dip</item>
+    </style>
+</resources>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:padding="10dp">
+    <LinearLayout android:id="@+id/top_layout"
+                  android:layout_height="wrap_content"
+                  android:layout_width="match_parent" android:orientation="vertical"
+                  android:layout_marginBottom="10dp">
+        <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:gravity="center_vertical"
+                android:text="@string/receiver_desc"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"/>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dip"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_top_corner_white"
+                android:paddingLeft="5dip">
+
+            <EditText
+                    android:id="@+id/fax_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@null"
+                    android:drawableLeft="@drawable/fox_name"
+                    android:drawablePadding="5dip"
+                    android:hint="@string/input_receiver_desc"
+                    android:textSize="16sp"/>
+
+            <Button
+                    android:id="@+id/add_button"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="5dip"
+                    android:background="@drawable/type_select_btn2"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_bottom_corner_white"
+                android:paddingLeft="5dip">
+
+            <EditText android:id="@+id/fax_number"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:background="@null"
+                      android:drawableLeft="@drawable/fox_num"
+                      android:drawablePadding="5dip"
+                      android:hint="@string/input_fax_number"
+                      android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/sent_result"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+            <TextView android:layout_width="80dp"
+                      android:layout_height="wrap_content"
+                      android:gravity="center"
+                      android:text="@string/sent_result"
+                      android:textColor="@color/text_black"
+                      android:textSize="16sp"/>
+
+            <TextView android:id="@+id/sent_result_tv"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_vertical"
+                      android:layout_weight="1.0"
+                      android:background="@null"
+                      android:gravity="center_vertical"
+                      android:text=""
+                      android:textColor="@color/text_black"
+                      android:textSize="16sp"/>
+
+            <ImageView
+                    android:id="@+id/error_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:contentDescription=""
+                    android:src="@drawable/msg_state_failed_resend"
+                    android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/sent_time"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+            <TextView android:layout_width="80dp"
+                      android:layout_height="wrap_content"
+                      android:gravity="center"
+                      android:text="@string/sent_time"
+                      android:textColor="@color/text_black"
+                      android:textSize="16sp"/>
+
+            <TextView android:id="@+id/sent_time_tv"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_gravity="center_vertical"
+                      android:background="@null"
+                      android:gravity="center_vertical"
+                      android:textColor="@color/text_black"
+                      android:textSize="16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/bottom_layout" android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true" android:gravity="center">
+        <Button android:layout_height="40dp"
+                android:layout_weight="1.0"
+                android:layout_width="wrap_content"
+                android:layout_margin="2dp"
+                android:text="添加文件" android:textColor="@android:color/white"
+                android:background="@drawable/new_warm_btn_bg"/>
+        <Button android:layout_height="40dp"
+                android:layout_weight="1.0"
+                android:layout_width="wrap_content"
+                android:layout_margin="2dp" android:textColor="@android:color/white"
+                android:text="传真预览" android:background="@drawable/new_nurmal_btn_bg"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent"
+                  android:layout_above="@id/bottom_layout"
+                  android:layout_below="@id/top_layout" android:gravity="center">
+        <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content"
+                   android:src="@drawable/fax_machine" android:layout_gravity="center"/>
+    </LinearLayout>
+</RelativeLayout>
