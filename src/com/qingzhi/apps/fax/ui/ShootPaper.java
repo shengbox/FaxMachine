@@ -44,6 +44,8 @@ public class ShootPaper extends FragmentActivity implements SurfaceHolder.Callba
 
         setContentView(R.layout.activity_rect_photo);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         // 初始化SurfaceView
         mPreviewSV = (SurfaceView) findViewById(R.id.previewSV);
         mPreviewSV.setZOrderOnTop(false);
