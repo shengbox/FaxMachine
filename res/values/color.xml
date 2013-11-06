@@ -56,4 +56,8 @@
     
     <color name="tab_indicator_nurmal">#297dbd</color>
     <color name="tab_indicator_check">#52aef3</color>
+
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#b0000000</color>
 </resources>

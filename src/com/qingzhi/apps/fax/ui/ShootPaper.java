@@ -33,7 +33,6 @@ public class ShootPaper extends FragmentActivity implements SurfaceHolder.Callba
     private Bitmap mBitmap = null;
     private AutoFocusCallback myAutoFocusCallback = null;
 
-    @SuppressLint("WrongCall")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +71,6 @@ public class ShootPaper extends FragmentActivity implements SurfaceHolder.Callba
         // 绘制矩形的ImageView
         mDrawIV = (DrawImageView) findViewById(R.id.drawIV);
         mDrawIV.setType(1);
-        mDrawIV.onDraw(new Canvas());
 
         mPhotoImgBtn = (Button) findViewById(R.id.photoImgBtn);
         mPhotoImgBtn.setOnClickListener(new PhotoOnClickListener());
@@ -92,7 +90,6 @@ public class ShootPaper extends FragmentActivity implements SurfaceHolder.Callba
             int i = mDrawIV.getType();
             i++;
             mDrawIV.setType(i % 3);
-            mDrawIV.onDraw(new Canvas());
             mDrawIV.invalidate();
         }
         return super.onOptionsItemSelected(item);

@@ -1,6 +1,7 @@
 package com.qingzhi.apps.fax.ui;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,6 +11,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.ImageView;
+import com.qingzhi.apps.fax.R;
 
 public class DrawImageView extends ImageView {
     private int type = 0;
@@ -19,18 +21,15 @@ public class DrawImageView extends ImageView {
     private int rectX;
     private int rectY;
 
+    private final Paint paint;
+    private final int maskColor;
+
     public DrawImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
-    }
 
-    Paint paint = new Paint();
-
-    {
-        paint.setAntiAlias(true);
-        paint.setColor(Color.RED);
-        paint.setStyle(Style.STROKE);
-        paint.setStrokeWidth(7.5f);// 设置线宽
-        paint.setAlpha(100);
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Resources resources = getResources();
+        maskColor = resources.getColor(R.color.viewfinder_mask);
     }
 
     Paint p = new Paint();
@@ -47,8 +46,8 @@ public class DrawImageView extends ImageView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int width = getWidth();
-        int height = getHeight();
+        int width = canvas.getWidth();
+        int height = canvas.getHeight();
         if (width * height > 0) {
             if (type == 1) {
                 // 身份证
@@ -73,11 +72,19 @@ public class DrawImageView extends ImageView {
         }
 
         if (type > 0) {
-            canvas.drawRect(new Rect(rectX, rectY, rectX + rectWidth, rectY + rectHeight), paint);//绘制矩形
+
+            paint.setColor(maskColor);
+
+            canvas.drawRect(0, 0, width, rectY, paint);
+            canvas.drawRect(0, rectY, rectX, rectY + rectHeight + 1, paint);
+            canvas.drawRect(rectX + rectWidth + 1, rectY, width, rectY + rectHeight + 1, paint);
+            canvas.drawRect(0, rectY + rectHeight + 1, width, height, paint);
+
+//            canvas.drawRect(new Rect(rectX, rectY, rectX + rectWidth, rectY + rectHeight), paint);//绘制矩形
             if (type == 1)
-                canvas.drawText("请将身份证置于框内", rectX + 50, (rectY + rectHeight) / 2, p);
+                canvas.drawText("请将身份证置于取景框内", rectX + 50, height, p);
             if (type == 2)
-                canvas.drawText("请A4纸宽和边框对齐", rectX + 50, (rectY + rectHeight) / 2, p);
+                canvas.drawText("请A4纸置于取景框内", rectX + 50, height, p);
         }
     }
 
