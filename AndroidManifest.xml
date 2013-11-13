@@ -52,7 +52,7 @@
             -->
         </activity>
 
-        <activity android:name=".ui.HomeActivity" android:launchMode="singleInstance"
+        <activity android:name=".ui.HomeActivity" android:launchMode="singleTask"
                   android:label="@string/title_activity_rect_photo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
