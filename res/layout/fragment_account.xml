@@ -34,7 +34,7 @@
                   android:text="修改密码"/>
     </LinearLayout>
 
-    <Button android:layout_height="45dp"
+    <Button android:id="@+id/logout_btn" android:layout_height="45dp"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:background="@drawable/new_warm_btn_bg"

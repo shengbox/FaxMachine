@@ -36,7 +36,7 @@ import android.widget.ListView;
 import com.qingzhi.apps.fax.R;
 
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawer;
     private LinearLayout mDrawer2;
@@ -49,6 +49,10 @@ public class HomeActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (isFinishing()) {
+            return;
+        }
 
         setContentView(R.layout.drawer_layout);
 

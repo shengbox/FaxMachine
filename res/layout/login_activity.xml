@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_layout_bg"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/changeService"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dip"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="青芝会议宝"
+            android:textColor="#404040"
+            android:textSize="34sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="快速、便捷、易用的手机会议"
+            android:textColor="#808080"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dip"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip" >
+
+        <EditText
+            android:id="@+id/username_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="55dip"
+            android:background="@drawable/login_user_bg"
+            android:hint="请输入手机号码"
+            android:inputType="phone"
+            android:paddingLeft="70dip"
+            android:textColorHint="@color/text_gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/password_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="55dip"
+            android:layout_marginTop="8dip"
+            android:background="@drawable/login_pwds_bg"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:paddingLeft="70dip"
+            android:textColorHint="@color/text_gray"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="45dip"
+            android:layout_marginTop="15dip"
+            android:background="@drawable/new_warm_btn_bg"
+            android:text="登陆"
+            android:onClick="handleLogin"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dip"
+        android:gravity="bottom|center_horizontal" >
+
+        <TextView
+            android:id="@+id/forget_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:text="忘记密码"
+            android:textColor="@color/new_theme_color" />
+
+        <TextView
+            android:id="@+id/registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:text="立即注册"
+            android:textColor="@color/new_theme_color" />
+    </LinearLayout>
+
+</LinearLayout>
