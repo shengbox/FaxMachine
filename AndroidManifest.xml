@@ -39,6 +39,13 @@
                        android:resource="@xml/authenticator"/>
         </service>
 
+        <service android:name=".sync.SyncService" android:exported="true" android:label="会议记录">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/syncadapter"/>
+        </service>
+
         <activity
                 android:name=".authenticator.AuthenticatorActivity"
                 android:label="@string/ui_activity_title"
@@ -64,9 +71,9 @@
         <activity android:name=".ui.VerifyDialog" android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity android:name=".ui.WebActivity"/>
         <provider android:name="com.qingzhi.apps.fax.provider.FaxProvider"
-                  android:authorities="com.qingzhi.apps.fax"
+                  android:authorities="com.shengbox.apps.fax"
                   android:syncable="true"
-                  android:label="@string/app_name"/>
+                  android:label="会议记录"/>
     </application>
 
 </manifest>

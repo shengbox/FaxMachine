@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">传真机</string>
-    <string name="label">qingzhi-net</string>
+    <string name="label">亲信</string>
     <string name="ui_activity_title">登陆</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>

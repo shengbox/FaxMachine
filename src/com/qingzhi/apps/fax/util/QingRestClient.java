@@ -7,7 +7,7 @@ import com.loopj.android.http.RequestParams;
 
 public class QingRestClient {
 
-    private static final String BASE_URL = "http://www.qingzhicall.com/ucp/";
+    private static final String BASE_URL = "http://sbucp.weibocall.com/ucp/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 

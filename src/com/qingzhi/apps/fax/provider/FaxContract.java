@@ -32,7 +32,7 @@ public class FaxContract {
         String SENDING_PAGE_COUNT = "sending_page_count";
     }
 
-    public static final String CONTENT_AUTHORITY = "com.qingzhi.apps.fax";
+    public static final String CONTENT_AUTHORITY = "com.shengbox.apps.fax";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     private static final String PATH_FRIENDS = "faxs";
 

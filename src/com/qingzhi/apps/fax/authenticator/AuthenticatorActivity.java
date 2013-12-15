@@ -5,6 +5,7 @@ import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountManager;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -22,6 +23,7 @@ import com.google.gson.JsonParser;
 import com.qingzhi.apps.fax.R;
 import com.qingzhi.apps.fax.client.NetworkUtilities;
 import com.qingzhi.apps.fax.io.model.QAccount;
+import com.qingzhi.apps.fax.provider.FaxContract;
 import com.qingzhi.apps.fax.util.AccountUtils;
 import com.qingzhi.apps.fax.util.QingzhiUtil;
 
@@ -262,7 +264,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity {
             mAccountManager.addAccountExplicitly(account, acc.c, userdata);
             // Set contacts sync for this account.
 //            ContentResolver.setSyncAutomatically(account, ContactsContract.AUTHORITY, true);
-//            ContentResolver.setSyncAutomatically(account, ScheduleContract.CONTENT_AUTHORITY, true);
+            ContentResolver.setSyncAutomatically(account, FaxContract.CONTENT_AUTHORITY, true);
         } else {
             mAccountManager.setPassword(account, acc.c);
         }
