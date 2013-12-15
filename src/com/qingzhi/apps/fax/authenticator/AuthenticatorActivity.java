@@ -21,7 +21,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.qingzhi.apps.fax.R;
 import com.qingzhi.apps.fax.client.NetworkUtilities;
-import com.qingzhi.apps.fax.io.model.QzAccount;
+import com.qingzhi.apps.fax.io.model.QAccount;
 import com.qingzhi.apps.fax.util.AccountUtils;
 import com.qingzhi.apps.fax.util.QingzhiUtil;
 
@@ -250,7 +250,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity {
         Log.i(TAG, "finishLogin()");
         Gson gson = new Gson();
         JsonObject jsonObject = new JsonParser().parse(authToken).getAsJsonObject();
-        QzAccount acc = gson.fromJson(jsonObject.get("qa"), QzAccount.class);
+        QAccount acc = gson.fromJson(jsonObject.get("qa"), QAccount.class);
 
         final Account account = new Account(acc.p.n, AccountUtils.ACCOUNT_TYPE);
         if (mRequestNewAccount) {

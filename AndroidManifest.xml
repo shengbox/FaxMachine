@@ -3,7 +3,7 @@
           android:versionCode="1"
           android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="15"/>
+    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="15"/>
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
@@ -11,7 +11,6 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
     <uses-permission android:name="android.permission.READ_SYNC_STATS"/>
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
@@ -62,6 +61,8 @@
         <activity android:name=".ui.PaperShow" android:configChanges="orientation"/>
         <activity android:name=".ui.ShootPaper" android:configChanges="orientation"/>
         <activity android:name=".ui.FaxEdit"/>
+        <activity android:name=".ui.VerifyDialog" android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity android:name=".ui.WebActivity"/>
         <provider android:name="com.qingzhi.apps.fax.provider.FaxProvider"
                   android:authorities="com.qingzhi.apps.fax"
                   android:syncable="true"

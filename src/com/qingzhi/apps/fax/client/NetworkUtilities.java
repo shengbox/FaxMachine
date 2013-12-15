@@ -68,7 +68,7 @@ final public class NetworkUtilities {
     /** Timeout (in ms) we specify for each http request */
     public static final int HTTP_REQUEST_TIMEOUT_MS = 30 * 1000;
     /** Base URL for the v2 Sample Sync Service */
-    public static final String BASE_URL = "http://www.qingzhicall.com/ucp";
+    public static final String BASE_URL = "http://sbucp.weibocall.com/ucp";
     /** URI for authentication service */
     public static final String AUTH_URI = BASE_URL + "/account/login";
     /** URI for sync service */

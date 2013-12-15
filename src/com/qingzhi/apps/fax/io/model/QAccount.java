@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * 三宝的青芝账号
  */
-public class QzAccount implements Parcelable {
+public class QAccount implements Parcelable {
     public String q;          // 青芝ID，long 型
     public String c;        // 青芝Token。
     public String ln;       // line number
@@ -19,7 +19,7 @@ public class QzAccount implements Parcelable {
     public String bpn;      // bound phone number 绑定的手机号，不可空
     public String pass_md5;
 
-    public QzAccount() {
+    public QAccount() {
     }
 
     @Override
@@ -27,17 +27,17 @@ public class QzAccount implements Parcelable {
         return 0;
     }
 
-    public static final Creator<QzAccount> CREATOR = new Creator<QzAccount>() {
-        public QzAccount createFromParcel(Parcel in) {
-            return new QzAccount(in);
+    public static final Creator<QAccount> CREATOR = new Creator<QAccount>() {
+        public QAccount createFromParcel(Parcel in) {
+            return new QAccount(in);
         }
 
-        public QzAccount[] newArray(int size) {
-            return new QzAccount[size];
+        public QAccount[] newArray(int size) {
+            return new QAccount[size];
         }
     };
 
-    private QzAccount(Parcel in) {
+    private QAccount(Parcel in) {
         q = in.readString();
         c = in.readString();
         ln = in.readString();

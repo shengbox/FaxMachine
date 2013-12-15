@@ -45,9 +45,9 @@ public class AccountUtils {
 
     // The auth scope required for the app. In our case we use the "conference API"
     // (not currently open source) which requires the developerssite (and readonly variant) scope.
-    public static final String ACCOUNT_TYPE = "com.qingzhi";
+    public static final String ACCOUNT_TYPE = "com.shengbox";
 
-    public static final String AUTH_TOKEN_TYPE =  "com.qingzhi.apps.uc";
+    public static final String AUTH_TOKEN_TYPE =  "com.shengbox.apps.bao";
 //            "oauth2:"
 //                    + "https://www.googleapis.com/auth/developerssite "
 //                    + "https://www.googleapis.com/auth/developerssite.readonly ";
