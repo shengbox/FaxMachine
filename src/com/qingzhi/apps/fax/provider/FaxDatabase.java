@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import com.qingzhi.apps.fax.io.model.Meeting;
 import com.qingzhi.apps.fax.provider.FaxContract.FaxColumns;
 
 public class FaxDatabase extends SQLiteOpenHelper {
@@ -13,6 +14,7 @@ public class FaxDatabase extends SQLiteOpenHelper {
 
     interface Tables {
         String FAX = "fax";
+        String MEETING = "meeting";
     }
 
     public FaxDatabase(Context context) {
@@ -41,6 +43,27 @@ public class FaxDatabase extends SQLiteOpenHelper {
                 + FaxColumns.SENDER_PHONE + " TEXT,"
                 + FaxColumns.SENDING_PAGE_COUNT + " TEXT,"
                 + "UNIQUE (" + FaxColumns.ID + ") ON CONFLICT REPLACE)");
+
+        db.execSQL("CREATE TABLE " + Tables.MEETING + " ("
+                + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + FaxContract.MeetingColumns.STATUS + " TEXT,"
+                + FaxContract.MeetingColumns.HOLDER_ENTER_FIRST + " TEXT,"
+                + FaxContract.MeetingColumns.UPDATE_TIME + " TEXT,"
+                + FaxContract.MeetingColumns.ENTER_TOKEN + " TEXT,"
+                + FaxContract.MeetingColumns.ENABLE_LISTEN + " TEXT,"
+                + FaxContract.MeetingColumns.CREATOR_NAME + " TEXT,"
+                + FaxContract.MeetingColumns.START_TIME + " TEXT,"
+                + FaxContract.MeetingColumns.ENTER_URL + " TEXT,"
+                + FaxContract.MeetingColumns.RECORD + " TEXT,"
+                + FaxContract.MeetingColumns.CREATOR_ID + " TEXT,"
+                + FaxContract.MeetingColumns.CREATE_TIME + " TEXT,"
+                + FaxContract.MeetingColumns.ROOM_ID + " TEXT,"
+                + FaxContract.MeetingColumns.END_TIME + " TEXT,"
+                + FaxContract.MeetingColumns.END_REASON + " TEXT,"
+                + FaxContract.MeetingColumns.CONF_TEL + " TEXT,"
+                + FaxContract.MeetingColumns.ID + " TEXT,"
+                + FaxContract.MeetingColumns.SUBJECT + " TEXT,"
+                + "UNIQUE (" + FaxContract.MeetingColumns.ID + ") ON CONFLICT REPLACE)");
     }
 
     @Override

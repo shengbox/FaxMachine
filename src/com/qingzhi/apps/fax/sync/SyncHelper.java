@@ -6,14 +6,19 @@ import android.content.*;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.qingzhi.apps.fax.Constants;
+import com.qingzhi.apps.fax.client.NetworkUtilities;
 import com.qingzhi.apps.fax.io.HandlerException;
 import com.qingzhi.apps.fax.io.JSONHandler;
+import com.qingzhi.apps.fax.io.MeetingHandler;
 import com.qingzhi.apps.fax.io.model.ErrorResponse;
+import com.qingzhi.apps.fax.provider.FaxContract;
 import com.qingzhi.apps.fax.util.AccountUtils;
+import com.qingzhi.apps.fax.util.ApiSignatureTool;
 import com.qingzhi.apps.fax.util.UIUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -31,10 +36,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.qingzhi.apps.fax.util.LogUtils.*;
 
@@ -94,23 +96,22 @@ public class SyncHelper {
         String token = am.getPassword(accounts[0]);
 
         LOGI(TAG, "Performing sync");
-        /*
+
         if (isOnline()) {
             try {
                 final long startRemote = System.currentTimeMillis();
                 LOGI(TAG, "Remote syncing sessions");
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("q", q);
-                map.put("c", token);
-                map.put("pos", "");
-                map.put("cnt", "100");
-                map.put("time", syncTime);
-                batch.addAll(executeGet(Config.GET_FRIEND, map, new FriendsHandler(mContext)));
-                map.clear();
-                map.put("q", q);
-                map.put("c", token);
-                batch.addAll(executeGet(Config.GET_GROUPS, map,
-                        new GroupsHandler(mContext)));
+                map.put("query_direction", "2");
+                String sn = ApiSignatureTool.signWithMD5("conf/get_list", map, token);
+                map.put("sn", sn);
+                batch.addAll(executeGet(NetworkUtilities.BASE_URL + "conf/get_list", map, new MeetingHandler(mContext)));
+//                map.clear();
+//                map.put("q", q);
+//                map.put("c", token);
+//                batch.addAll(executeGet(Config.GET_GROUPS, map,
+//                        new GroupsHandler(mContext)));
 
                 // GET_ALL_SESSIONS covers the functionality GET_MY_SCHEDULE provides here.
                 LOGD(TAG, "Remote sync took " + (System.currentTimeMillis() - startRemote) + "ms");
@@ -128,20 +129,20 @@ public class SyncHelper {
             }
             // all other IOExceptions are thrown
         }
-     /*
+
         try {
 
-            int delete = resolver.delete(ScheduleContract.Friends.CONTENT_URI,
-                    ScheduleContract.Friends.TYPE + "= ?", new String[]{"1"});
-            Log.d(TAG, "delete group " + delete);
+//            int delete = resolver.delete(ScheduleContract.Friends.CONTENT_URI,
+//                    ScheduleContract.Friends.TYPE + "= ?", new String[]{"1"});
+//            Log.d(TAG, "delete group " + delete);
 
             // Apply all queued up remaining batch operations (only remote content at this point).
-            resolver.applyBatch(ScheduleContract.CONTENT_AUTHORITY, batch);
+            resolver.applyBatch(FaxContract.CONTENT_AUTHORITY, batch);
         } catch (RemoteException e) {
             throw new RuntimeException("Problem applying batch operation", e);
         } catch (OperationApplicationException e) {
             throw new RuntimeException("Problem applying batch operation", e);
-        }   */
+        }
     }
 
     /**

@@ -17,6 +17,9 @@ public class FaxProvider extends ContentProvider {
 
     private static final int FAXS = 100;
     private static final int FAXS_ID = 101;
+    private static final int MEETINGS = 200;
+    private static final int MEETINGS_ID = 201;
+
 
     private static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -24,6 +27,9 @@ public class FaxProvider extends ContentProvider {
 
         matcher.addURI(authority, "faxs", FAXS);
         matcher.addURI(authority, "faxs/*", FAXS_ID);
+        matcher.addURI(authority, "meetings", MEETINGS);
+        matcher.addURI(authority, "meetings/*", MEETINGS_ID);
+
         return matcher;
     }
 
@@ -60,6 +66,11 @@ public class FaxProvider extends ContentProvider {
                 getContext().getContentResolver().notifyChange(uri, null, false);
                 return FaxContract.Faxs.buildFaxUri(values.getAsString(FaxContract.Faxs.ID));
             }
+            case MEETINGS: {
+                db.insertOrThrow(Tables.MEETING, null, values);
+                getContext().getContentResolver().notifyChange(uri, null, false);
+                return FaxContract.Meeting.buildMeetingUri(values.getAsString(FaxContract.Meeting.ID));
+            }
         }
         return null;
     }
@@ -91,6 +102,11 @@ public class FaxProvider extends ContentProvider {
                 return builder.table(Tables.FAX)
                         .where(FaxContract.Faxs.ID + "=?", id);
             }
+            case MEETINGS_ID: {
+                final String id = FaxContract.Meeting.getMeetingId(uri);
+                return builder.table(Tables.MEETING)
+                        .where(FaxContract.Meeting.ID + "=?", id);
+            }
             default: {
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
             }
@@ -107,6 +123,9 @@ public class FaxProvider extends ContentProvider {
         switch (match) {
             case FAXS: {
                 return builder.table(Tables.FAX);
+            }
+            case MEETINGS: {
+                return builder.table(Tables.MEETING);
             }
             default: {
                 throw new UnsupportedOperationException("Unknown uri: " + uri);

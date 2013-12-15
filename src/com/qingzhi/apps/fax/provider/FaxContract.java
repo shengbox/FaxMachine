@@ -32,6 +32,26 @@ public class FaxContract {
         String SENDING_PAGE_COUNT = "sending_page_count";
     }
 
+    interface MeetingColumns {
+        public String STATUS = "status";
+        public String HOLDER_ENTER_FIRST = "holder_enter_first";
+        public String UPDATE_TIME = "update_time";
+        public String ENTER_TOKEN = "enter_token";
+        public String ENABLE_LISTEN = "enable_listen";
+        public String CREATOR_NAME = "creator_name";
+        public String START_TIME = "start_time";
+        public String ENTER_URL = "enter_url";
+        public String RECORD = "record";
+        public String CREATOR_ID = "creator_id";
+        public String CREATE_TIME = "create_time";
+        public String ROOM_ID = "room_id";
+        public String END_TIME = "end_time";
+        public String END_REASON = "end_reason";
+        public String CONF_TEL = "conf_tel";
+        public String ID = "id";
+        public String SUBJECT = "subject";
+    }
+
     public static final String CONTENT_AUTHORITY = "com.shengbox.apps.fax";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     private static final String PATH_FRIENDS = "faxs";
@@ -73,6 +93,22 @@ public class FaxContract {
         String time = "time";
         String width = "width";
         String pages_bundle_id = "pages_bundle_id";
+    }
+
+    private static final String PATH_MEETINGS = "meetings";
+
+    public static class Meeting implements MeetingColumns, BaseColumns {
+
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_MEETINGS).build();
+
+        public static Uri buildMeetingUri(String meetingId) {
+            return CONTENT_URI.buildUpon().appendPath(meetingId).build();
+        }
+
+        public static String getMeetingId(Uri uri) {
+            return uri.getPathSegments().get(1);
+        }
     }
 
     public static Uri addCallerIsSyncAdapterParameter(Uri uri) {
