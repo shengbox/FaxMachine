@@ -1,48 +1,22 @@
-/*
- * Copyright (C) 2013 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-
 package com.qingzhi.apps.fax.ui;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
-import com.google.gson.Gson;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import android.widget.FrameLayout;
 import com.qingzhi.apps.fax.R;
-import com.qingzhi.apps.fax.io.model.Person;
-import com.qingzhi.apps.fax.util.AccountUtils;
-
 
 public class HomeActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawer;
-    private LinearLayout mDrawer2;
+    private FrameLayout mDrawer2;
     private Fragment mContent;
 
     private ActionBarHelper mActionBar;
@@ -60,30 +34,19 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.drawer_layout);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawer = (ListView) findViewById(R.id.left_list);
-        mDrawer2 = (LinearLayout) findViewById(R.id.left_drawer);
+        mDrawer2 = (FrameLayout) findViewById(R.id.left_drawer);
 
         FragmentManager fm = getSupportFragmentManager();
 
         if (fm.findFragmentById(R.id.content) == null) {
-            mContent = new FaxActivity();
-            fm.beginTransaction().replace(R.id.content, mContent).commit();
+            mContent = new MeetingList();
+            Fragment fragment = new DrawerLeft();
+            fm.beginTransaction().replace(R.id.content, mContent)
+                    .replace(R.id.left_drawer, fragment).commit();
         }
-
-        AccountManager am = AccountManager.get(this);
-        Account[] accounts = am.getAccountsByType(AccountUtils.ACCOUNT_TYPE);
-        String p = am.getUserData(accounts[0], "person");
-        Person person = new Gson().fromJson(p, Person.class);
-
-        ImageView imageView = (ImageView) findViewById(R.id.photo);
-        ImageLoader.getInstance().displayImage(person.img, imageView);
 
         mDrawerLayout.setDrawerListener(new DemoDrawerListener());
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
-        mDrawer.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                Shakespeare.TITLES));
-        mDrawer.setOnItemClickListener(new DrawerItemClickListener());
 
         mActionBar = createActionBarHelper();
         mActionBar.init();
@@ -95,8 +58,6 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-
-        // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
     }
 
@@ -118,31 +79,12 @@ public class HomeActivity extends BaseActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    public void changeContent(Fragment fragment){
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.content, fragment).commit();
 
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//            mContent.setText(Shakespeare.DIALOGUE[position]);
-//            mActionBar.setTitle(Shakespeare.TITLES[position]);
-
-            switch (position) {
-                case 0:
-                    mContent = new FaxActivity();
-                    break;
-                case 1:
-                    mContent = new MeetingList();
-                    break;
-                case 2:
-                    mContent = new AccountFragment();
-                    break;
-            }
-
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.content, mContent).commit();
-
-            mActionBar.setTitle(null);
-            mDrawerLayout.closeDrawer(mDrawer2);
-        }
+        mActionBar.setTitle(null);
+        mDrawerLayout.closeDrawers();
     }
 
 

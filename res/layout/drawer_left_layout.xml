@@ -7,15 +7,17 @@
     <LinearLayout android:layout_height="150dp" android:layout_width="280dp"
                   android:background="@color/green" android:gravity="bottom">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:layout_gravity="bottom" android:gravity="center_horizontal">
+                      android:layout_gravity="bottom" android:paddingLeft="20dp">
             <ImageView android:id="@+id/photo" android:layout_width="46dp"
-                       android:layout_height="46dp" android:src="@drawable/meeting_ongoing"/>
+                       android:layout_height="46dp" android:src="@drawable/meeting_ongoing"
+                       android:layout_margin="5dp"/>
             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:text="zhangsheng" android:textColor="@color/text_black"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:text="18877778888" android:textColor="@color/text_black"/>
+                          android:orientation="vertical" android:layout_gravity="center_vertical">
+                <TextView android:id="@+id/name" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textColor="@color/text_black"/>
+                <TextView android:id="@+id/bpn" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:textColor="@color/text_black"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
