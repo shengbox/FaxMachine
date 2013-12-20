@@ -18,8 +18,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.qingzhi.apps.fax.util.LogUtils.LOGD;
+
 
 public class VerifyDialog extends Activity implements View.OnClickListener {
+    public static final String TAG = "VerifyDialog";
     EditText phone;
     EditText code;
     String deviceId;
@@ -51,15 +54,17 @@ public class VerifyDialog extends Activity implements View.OnClickListener {
         QingRestClient.post("account/get_code", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(JSONObject jsonObject) {
+                LOGD(TAG, jsonObject.toString());
             }
 
             @Override
             public void onFailure(Throwable e, JSONObject errorResponse) {
-
+                LOGD(TAG, errorResponse.toString());
             }
 
             @Override
             public void onFailure(Throwable error, String content) {
+                LOGD(TAG, content.toString());
             }
         });
     }
@@ -72,12 +77,13 @@ public class VerifyDialog extends Activity implements View.OnClickListener {
         QingRestClient.get("account/verify", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(JSONObject jsonObject) {
+                LOGD(TAG, jsonObject.toString());
                 finish();
             }
 
             @Override
             public void onFailure(Throwable e, JSONObject errorResponse) {
-
+                LOGD(TAG, errorResponse.toString());
             }
         });
     }

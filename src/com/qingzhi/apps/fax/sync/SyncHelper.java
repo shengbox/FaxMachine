@@ -107,12 +107,6 @@ public class SyncHelper {
                 String sn = ApiSignatureTool.signWithMD5("conf/get_list", map, token);
                 map.put("sn", sn);
                 batch.addAll(executeGet(NetworkUtilities.BASE_URL + "conf/get_list", map, new MeetingHandler(mContext)));
-//                map.clear();
-//                map.put("q", q);
-//                map.put("c", token);
-//                batch.addAll(executeGet(Config.GET_GROUPS, map,
-//                        new GroupsHandler(mContext)));
-
                 // GET_ALL_SESSIONS covers the functionality GET_MY_SCHEDULE provides here.
                 LOGD(TAG, "Remote sync took " + (System.currentTimeMillis() - startRemote) + "ms");
                 if (syncResult != null) {
@@ -127,7 +121,6 @@ public class SyncHelper {
                 }
                 AccountUtils.invalidateAuthToken(mContext);
             }
-            // all other IOExceptions are thrown
         }
 
         try {

@@ -2,7 +2,6 @@ package com.qingzhi.apps.fax.ui;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -16,12 +15,12 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.qingzhi.apps.fax.R;
-import com.qingzhi.apps.fax.io.model.Fax;
 import com.qingzhi.apps.fax.provider.FaxContract;
-import com.qingzhi.apps.fax.sync.FaxMgr;
-
+import com.qingzhi.apps.fax.util.UIUtils;
 
 public class MeetingList extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -42,19 +41,42 @@ public class MeetingList extends ListFragment implements LoaderManager.LoaderCal
         super.onActivityCreated(savedInstanceState);
         setEmptyText("没有会议记录");
         mAdapter = new SimpleCursorAdapter(getActivity(),
-                R.layout.fax_box_list_item, null,
-                new String[]{
-                        FaxContract.Meeting.ID},
-                new int[]{R.id.receiver_desc}, 0);
+                R.layout.meeting_list_item, null,
+                new String[]{FaxContract.Meeting.STATUS, FaxContract.Meeting.SUBJECT,
+                        FaxContract.Meeting.START_TIME, FaxContract.Meeting.CREATOR_NAME},
+                new int[]{R.id.status, R.id.subject, R.id.start_time, R.id.creator_name}, 0);
 
+        SimpleCursorAdapter.ViewBinder viewBinder = new SimpleCursorAdapter.ViewBinder() {
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int i) {
+                switch (view.getId()) {
+                    case R.id.status:
+                        String status = cursor.getString(i);
+                        if ("scheduled".equals(status)) {
+                            ((ImageView) view).setImageResource(R.drawable.meeting_scheduled);
+                        } else if ("onging".equals(status)) {
+                            ((ImageView) view).setImageResource(R.drawable.meeting_ongoing);
+                        } else if ("finished".equals(status)) {
+                            ((ImageView) view).setImageResource(R.drawable.meeting_finished);
+                        } else if ("deleted".equals(status)) {
+                            ((ImageView) view).setImageResource(R.drawable.meeting_delete);
+                        }
+                        return true;
+                    case R.id.start_time:
+                        String start = cursor.getString(i);
+                        ((TextView) view).setText(UIUtils.getDataFormat(start));
+                        return true;
+                }
+                return false;
+            }
+        };
+        mAdapter.setViewBinder(viewBinder);
         setListAdapter(mAdapter);
 
         setListShown(false);
         getListView().setItemsCanFocus(true);
         getListView().setCacheColorHint(Color.TRANSPARENT);
-        getListView().setDivider(new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{0x00000000, 0x00000000}));
         getListView().setDividerHeight(10);
-
         getLoaderManager().initLoader(0, null, this);
     }
 

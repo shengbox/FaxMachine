@@ -17,6 +17,8 @@
 
 package com.qingzhi.apps.fax.ui;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -29,11 +31,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.*;
+import com.google.gson.Gson;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.qingzhi.apps.fax.R;
+import com.qingzhi.apps.fax.io.model.Person;
+import com.qingzhi.apps.fax.util.AccountUtils;
 
 
 public class HomeActivity extends BaseActivity {
@@ -66,6 +69,14 @@ public class HomeActivity extends BaseActivity {
             mContent = new FaxActivity();
             fm.beginTransaction().replace(R.id.content, mContent).commit();
         }
+
+        AccountManager am = AccountManager.get(this);
+        Account[] accounts = am.getAccountsByType(AccountUtils.ACCOUNT_TYPE);
+        String p = am.getUserData(accounts[0], "person");
+        Person person = new Gson().fromJson(p, Person.class);
+
+        ImageView imageView = (ImageView) findViewById(R.id.photo);
+        ImageLoader.getInstance().displayImage(person.img, imageView);
 
         mDrawerLayout.setDrawerListener(new DemoDrawerListener());
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
@@ -202,7 +213,7 @@ public class HomeActivity extends BaseActivity {
         @Override
         public void init() {
             mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setHomeButtonEnabled(true);
+//            mActionBar.setHomeButtonEnabled(true);
             mTitle = mDrawerTitle = getTitle();
         }
 

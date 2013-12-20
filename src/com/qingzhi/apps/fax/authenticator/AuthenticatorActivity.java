@@ -24,6 +24,7 @@ import com.qingzhi.apps.fax.R;
 import com.qingzhi.apps.fax.client.NetworkUtilities;
 import com.qingzhi.apps.fax.io.model.QAccount;
 import com.qingzhi.apps.fax.provider.FaxContract;
+import com.qingzhi.apps.fax.ui.VerifyDialog;
 import com.qingzhi.apps.fax.util.AccountUtils;
 import com.qingzhi.apps.fax.util.QingzhiUtil;
 
@@ -200,15 +201,18 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity {
             }
         } else {
             Log.e(TAG, "onAuthenticationResult: failed to authenticate");
-            if (mRequestNewAccount) {
-                // "Please enter a valid username/password.
-                mMessage.setText(getText(R.string.login_activity_loginfail_text_both));
-            } else {
-                // "Please enter a valid password." (Used when the
-                // account is already in the database but the password
-                // doesn't work.)
-                mMessage.setText(getText(R.string.login_activity_loginfail_text_pwonly));
-            }
+//            if (mRequestNewAccount) {
+//                // "Please enter a valid username/password.
+//                mMessage.setText(getText(R.string.login_activity_loginfail_text_both));
+//            } else {
+//                // "Please enter a valid password." (Used when the
+//                // account is already in the database but the password
+//                // doesn't work.)
+//                mMessage.setText(getText(R.string.login_activity_loginfail_text_pwonly));
+//            }
+
+            Intent intent = new Intent(this, VerifyDialog.class);
+            startActivity(intent);
         }
     }
 
@@ -261,6 +265,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity {
             userdata.putString("ln", acc.ln);
             userdata.putString("bpn", acc.bpn);
             userdata.putString("pass_md5", acc.pass_md5);
+            userdata.putString("person", gson.toJson(acc.p));
             mAccountManager.addAccountExplicitly(account, acc.c, userdata);
             // Set contacts sync for this account.
 //            ContentResolver.setSyncAutomatically(account, ContactsContract.AUTHORITY, true);

@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.TextUtils;
+import com.qingzhi.apps.fax.authenticator.AuthenticatorActivity;
 
 import static com.qingzhi.apps.fax.util.LogUtils.LOGE;
 import static com.qingzhi.apps.fax.util.LogUtils.makeLogTag;
@@ -149,7 +150,8 @@ public class AccountUtils {
 //        loginFlowIntent.putExtra(AccountActivity.EXTRA_FINISH_INTENT, finishIntent);
 //        context.startActivity(loginFlowIntent);
 
-        Intent addAccountIntent = new Intent(Settings.ACTION_ADD_ACCOUNT);
+//        Intent addAccountIntent = new Intent(Settings.ACTION_ADD_ACCOUNT);
+        Intent addAccountIntent = new Intent(context, AuthenticatorActivity.class);
         addAccountIntent.putExtra("account_types",
                 new String[]{AccountUtils.ACCOUNT_TYPE});
         addAccountIntent.putExtra("com.qingzhi.apps.uc.extra.FINISH_INTENT", finishIntent);

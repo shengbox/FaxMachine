@@ -101,7 +101,6 @@ public class FaxListFragment extends ListFragment implements LoaderManager.Loade
         setListShown(false);
         getListView().setItemsCanFocus(true);
         getListView().setCacheColorHint(Color.TRANSPARENT);
-        getListView().setDivider(new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{0x00000000, 0x00000000}));
         getListView().setDividerHeight(10);
 
         getLoaderManager().initLoader(0, null, this);

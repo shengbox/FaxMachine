@@ -21,6 +21,22 @@ public class QingzhiUtil {
         return versionCode;
     }
 
+    public static String getVersionName(Context context) {
+        String versionName = "";
+        try {
+            PackageInfo packageInfo = context.getPackageManager()
+                    .getPackageInfo(context.getPackageName(), PackageManager.GET_CONFIGURATIONS);
+            versionName = packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionName;
+    }
+
+    public static String fromatDate(String date, String fromFromat, String toFormat) {
+        return date;
+    }
+
     public static String getMd5(String s) {
         char hexChar[] = {'0', '1', '2', '3', '4', '5', '6',
                 '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};

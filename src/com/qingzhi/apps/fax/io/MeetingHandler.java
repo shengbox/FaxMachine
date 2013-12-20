@@ -17,6 +17,7 @@
 package com.qingzhi.apps.fax.io;
 
 import android.content.ContentProviderOperation;
+import android.content.ContentProviderOperation.Builder;
 import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -27,6 +28,7 @@ import com.qingzhi.apps.fax.provider.FaxContract;
 import com.qingzhi.apps.fax.util.Lists;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +60,24 @@ public class MeetingHandler extends JSONHandler {
         ContentProviderOperation.Builder builder = ContentProviderOperation
                 .newInsert(FaxContract.addCallerIsSyncAdapterParameter(
                         FaxContract.Meeting.CONTENT_URI));
-        builder.withValue(FaxContract.Meeting.ID, meeting.id);
+        parser(builder, meeting);
         batch.add(builder.build());
+    }
+
+    public static Builder parser(Builder builder, Meeting meeting) {
+        Class userCla = (Class) meeting.getClass();
+        Field[] fs = userCla.getDeclaredFields();
+        for (int i = 0; i < fs.length; i++) {
+            Field f = fs[i];
+            f.setAccessible(true);
+            Object val = null;
+            try {
+                val = f.get(meeting);
+                builder.withValue(f.getName(), val);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return builder;
     }
 }

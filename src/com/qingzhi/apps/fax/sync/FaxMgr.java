@@ -42,16 +42,16 @@ public class FaxMgr {
         }
     }
 
-    public void uploadAttach(){
+    public void uploadAttach() {
 
     }
 
     public static void syncData(final Context context) {
         RequestParams params = new RequestParams();
-        params.put("r", "gogo");
-        params.put("un", "zhang");
-        params.put("gt", "gogo:zhang:17d9cc1b-45f7-46f4-9e5b-baff02dcc7df");
-        client.get("http://www.qingzhicall.com/ucm/api/fax/get_list", params, new JsonHttpResponseHandler() {
+        params.put("r", "qingzhi");
+        params.put("un", "zhangsheng");
+        params.put("gt", "qingzhi:zhangsheng:15c620dd-623f-4a60-bc18-56f7766e5966");
+        client.get("http://www.weibocall.com:801/ucm/api/fax/get_list", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(JSONObject response) {
                 JsonObject jsonObject = new JsonParser().parse(response.toString()).getAsJsonObject();
@@ -127,7 +127,7 @@ public class FaxMgr {
     public static Fax parser(Cursor cursor, String[] args) {
         Fax fax = new Fax();
 
-        Class userCla = (Class) fax.getClass();
+        Class userCla = (Class) ((Object) fax).getClass();
         Field[] fs = userCla.getDeclaredFields();
         for (String arg : args) {
             String value = cursor.getString(cursor.getColumnIndex(arg));
@@ -153,20 +153,22 @@ public class FaxMgr {
 
 
     public void getBundleAttachList(String r, String un, String gt, String bundle_id, String access_code, String all_children) {
-        Map<String,String> map = new HashMap<String, String>();
-        map.put("r",r);
-        map.put("un",un);
-        map.put("bundle_id",bundle_id);
-        map.put("access_code",access_code);
-        map.put("all_children",all_children);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("r", r);
+        map.put("un", un);
+        map.put("bundle_id", bundle_id);
+        map.put("access_code", access_code);
+        map.put("all_children", all_children);
         RequestParams params = new RequestParams(map);
         AsyncHttpClient client1 = new AsyncHttpClient();
-        client1.post("api/attach/get_bundle_attach_list",params,new JsonHttpResponseHandler(){
+        client1.post("api/attach/get_bundle_attach_list", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(JSONObject response) {
                 Gson gson = new Gson();
-                Map<String, List<Attach>> map = gson.fromJson(response.optString("children"), new TypeToken<Map<String, List<Attach>>>() {}.getType());
-                List<Attach> attachList = gson.fromJson(response.optString("attach_list"), new TypeToken<List<Attach>>() {}.getType());
+                Map<String, List<Attach>> map = gson.fromJson(response.optString("children"), new TypeToken<Map<String, List<Attach>>>() {
+                }.getType());
+                List<Attach> attachList = gson.fromJson(response.optString("attach_list"), new TypeToken<List<Attach>>() {
+                }.getType());
 
             }
         });

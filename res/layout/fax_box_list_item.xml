@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="30dp"
     android:layout_marginRight="30dp"
-    android:padding="15dp"
-    android:background="@drawable/corners_listitem_bk">
+    android:padding="15dp">
 
     <RelativeLayout
         android:id="@+id/fax_action"
