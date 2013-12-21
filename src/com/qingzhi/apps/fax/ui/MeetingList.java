@@ -2,6 +2,7 @@ package com.qingzhi.apps.fax.ui;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -151,6 +152,7 @@ public class MeetingList extends ListFragment implements LoaderManager.LoaderCal
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-
+        Intent intent = new Intent(getActivity(),TestActivity.class);
+        startActivity(intent);
     }
 }
